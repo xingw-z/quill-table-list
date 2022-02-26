@@ -1,7 +1,10 @@
-# Vue 3 + Vite
+# 在 Quill 表格中插入列表
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+本项目基于：
+- `quill@2.0.0-dev.3`
+- `quill-better-table@1.2.10`
 
-## Recommended IDE Setup
-
-- [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar)
+关键步骤：
+1. Step 1: 自定义`formats/list`格式，并注册到`Quill`中
+2. Step 2: 修改`TableCell`的`checkMerge`方法
+3. Step 3: 给`TableCell`的`allowedChildren`增加`ListItem`和`ListContainer`
