@@ -60,12 +60,19 @@ export function matchTableCell (node, delta, scroll) {
   return delta.reduce((newDelta, op) => {
     if (op.insert && typeof op.insert === 'string' &&
       op.insert.startsWith('\n')) {
-      newDelta.insert(op.insert, Object.assign(
-        {},
-        Object.assign({}, { row: rowId }, op.attributes.table),
-        { 'table-cell-line': { row: rowId, cell: cellId, rowspan, colspan, 'cell-bg': cellBg } },
-        _omit(op.attributes, ['table'])
-      ))
+        const isList = !!op?.attributes?.list;
+        const attrObj = isList ? { 
+          'list-container':  { row: rowId, cell: cellId, rowspan, colspan, 'cell-bg': cellBg },
+          'list':  { row: rowId, cell: cellId, rowspan, colspan, 'cell-bg': cellBg },
+        } : 
+        {'table-cell-line': { row: rowId, cell: cellId, rowspan, colspan, 'cell-bg': cellBg }}
+        newDelta.insert(op.insert, Object.assign(
+          {},
+          Object.assign({}, { row: rowId }, op.attributes.table),
+          (attrObj),
+          _omit(op.attributes, ['table']),
+          (isList ? attrObj : {})
+        ))
     } else {
       // bugfix: remove background attr from the delta of table cell
       //         to prevent unexcepted background attr append.

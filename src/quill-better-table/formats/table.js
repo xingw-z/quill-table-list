@@ -900,6 +900,7 @@ TableCell.requiredContainer = TableRow
 
 // Step 3: 给`TableCell`的`allowedChildren`增加`ListItem`和`ListContainer`
 TableCell.allowedChildren = [TableCellLine, Header, ListItem, ListContainer]
+ListContainer.requiredContainer = TableCell
 TableCellLine.requiredContainer = TableCell
 
 TableColGroup.allowedChildren = [TableCol]
@@ -939,6 +940,7 @@ export {
 
   // attributes
   CELL_IDENTITY_KEYS,
-  CELL_ATTRIBUTES
+  CELL_ATTRIBUTES,
+  CELL_DEFAULT
 }
 

@@ -43,11 +43,35 @@ const insertTable = () => {
   const tableModule = quill.getModule('better-table')
   tableModule.insertTable(3, 3)
 }
+const testHtml = `
+<table>
+  <tbody>
+    <tr>
+      <td>
+        <div>div</div>
+      </td>
+      <td>
+        <ol>
+          <li>li1</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td>td</td>
+      <td><br></td>
+    </tr>
+  </tbody>
+</table>
+`;
+const insertOlTable = () => {
+  quill.clipboard.dangerouslyPasteHTML(testHtml);
+}
 </script>
 
 <template>
 <div>
-  <button @click="insertTable" style="margin-bottom: 20px">insertTable</button>
+  <!-- <button @click="insertTable" style="margin-bottom: 20px">insertTable</button> -->
+  <button @click="insertOlTable" style="margin-bottom: 20px">insert Ol Table</button>
   <div id="editor"></div>
   <!-- <img alt="Vue logo" src="./assets/logo.png" />
   <HelloWorld msg="Hello Vue 3 + Vite" /> -->
