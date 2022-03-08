@@ -37,6 +37,9 @@ onMounted(() => {
       },
     },
   })
+  // quill.clipboard.addMatcher('table', function (node, delta) { 
+  //   return delta;
+  // })
 })
 
 const insertTable = () => {
@@ -66,12 +69,20 @@ const testHtml = `
 const insertOlTable = () => {
   quill.clipboard.dangerouslyPasteHTML(testHtml);
 }
+const getContents = () => {
+  console.log(quill.getContents());
+}
+const setCurrentContent = () => {
+  quill.setContents(quill.getContents())
+}
 </script>
 
 <template>
 <div>
   <!-- <button @click="insertTable" style="margin-bottom: 20px">insertTable</button> -->
   <button @click="insertOlTable" style="margin-bottom: 20px">insert Ol Table</button>
+  <button @click="getContents" style="margin-bottom: 20px">get delta</button>
+  <button @click="setCurrentContent" style="margin-bottom: 20px">set current delta</button>
   <div id="editor"></div>
   <!-- <img alt="Vue logo" src="./assets/logo.png" />
   <HelloWorld msg="Hello Vue 3 + Vite" /> -->
